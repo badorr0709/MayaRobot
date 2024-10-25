@@ -1,49 +1,43 @@
 import maya.cmds as cmds
-    class Robot:
-        def __init__(self):
-            head = [cmds.sphere(pivot=[0.0, 10.0, 0.0], r=2, name="centerOfHead"),
-                    cmds.polyCube(sx=0.5, sy=2.0, sz=1.0, axis=[12.0, 10.0, 0.0], name="leftEar"),
-                    cmds.polyCube(sx=0.5, sy=4.0, sz=1.0, axis=[-12.0, 10, 0.0], name="rightEar"),
-                    cmds.polyCube(sx=0.5, sy=0.5, sz=0.5,axis=[0, 8, 0.0],name = "neck")]
-            body = [cmds.polyCube(sx=9.0, sy=4.0, sz=3.0, axis=[0.0, 6.0, 0.0], name="upperChest"),
-                    cmds.polyCube(sx=6.0, sy=2.0, sz=2.6, axis=[0.0,4.5 .0, 0.0], name="midChest"),
-                    cmds.polyCube(sx=6.0, sy=2.0, sz=2.5, axis=[0.0, 3.0, 0.0], name="lowerChest")]
-            leg1 = [cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[1.0, 3.0, 0.0], name="rightThigh"),
-                    cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[1.0, 2.0, 0.0], name="rightCalf"),
-                    cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[1.0, 0.0, 0.0], name="rightFoot")]
-            leg2 = [cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[-1.0, 3.0, 0.0], name="rightThigh"),
-                    cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[-1.0, 2.0, 0.0], name="rightCalf"),
-                    cmds.polyCube(sx=.5, sy=4.0, sz=1.0, axis=[-1.0, 0.0, 0.0], name="rightFoot")]
-            arm1 = [cmds.polyCube(sx=1.0, sy=2.0, sz=1.0, axis=[4.5, 6.0, 0.0], nam="leftBicep"),
-                    cmds.polyCube(sx=0.5, sy=2.0, sz=1.0, axis=[4.5, 4.0, 0.0], name="leftForarm"),
-                    cmds.polyCube(sx=0.5, sy=.5, sz=0.5, axis=[4.5, 2.0, 0.0], name="hand")]
-            arm2= [cmds.polyCube(sx=1.0, sy=2.0, sz=1.0, axis=[-4.5, 6.0, 0.0], nam="leftBicep"),
-                    cmds.polyCube(sx=0.5, sy=2.0, sz=1.0, axis=[-4.5, 4.0, 0.0], name="leftForarm"),
-                    cmds.polyCube(sx=0.5, sy=.5, sz=0.5, axis=[-4.5, 2.0, 0.0], name="hand")]
-
-
-
-
-
-
-    def initHeadShape(self):
-        cmds.scale(3.0,3.0,3.0,"centerOfHead")
-        cmds.scale(.5, 2, .25,"leftEar")
-        cmds.scale(.5, 2, .25,"rightEar")
-        cmds.scale(.5,.5,.5,"neck")
-
-
-
-
-
-
-    def initBodyShape(self):
-        cmds.scale(9.0,3.5,3.0,self.body[0])
-        cmds.scale(9.0, 3.5, 3.0, self.body[0])
-        cmds.scale(9.0,3.5,3.0,self.body[0])
+class Robot:
+    def __init__(self):
+        self.head = [cmds.sphere(r=2, name="centerOfHead"),
+            cmds.polyCube(name="leftEar"),
+            cmds.polyCube(name="rightEar"),
+            cmds.polyCube(name = "neck")]
+        self.body = [cmds.polyCube(name="upperChest"),
+            cmds.polyCube(name="midChest"),
+            cmds.polyCube(name="lowerChest")]
+        self.legLeft = [cmds.polyCube(name="rightThigh"),
+            cmds.polyCube(name="rightCalf"),
+            cmds.polyCube(name="rightFoot")]
+        self.legRight = [cmds.polyCube(name="rightThigh"),
+            cmds.polyCube(name="rightCalf"),
+            cmds.polyCube(name="rightFoot")]
+        self.armLeft = [cmds.polyCube(name="leftBicep"),
+            cmds.polyCube(name="leftForarm"),
+            cmds.polyCube(name="hand")]
+        self.armRight= [cmds.polyCube(name="leftBicep"),
+            cmds.polyCube(name="leftForarm"),
+            cmds.polyCube(name="hand")]
+        self.headsetup()
+    def headsetup(self):
+        for x in range(len(self.head)-1):
+            match x:
+                case 0:
+                    cmds.scale(1,1,1,self.head[x])
+                    break
+                case 1:
+                    cmds.scale(.5,3,1,self.head[x])
+                    break
+                case 2:
+                    cmds.scale(.5,3,1,self.head[x])
+                    break
+                case 3:
+                    cmds.scale(.5,.5,.5,self.head[x])
+                    break
 
 
 
 
 robot = Robot()
-
